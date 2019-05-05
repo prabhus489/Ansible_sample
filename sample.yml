@@ -1,0 +1,13 @@
+---
+- hosts: multi
+
+  tasks:
+   - name: Downloading and Installing JFrog CLI
+     shell: "curl -sfL https://getcli.jfrog.io | sh"
+   - name: Moving jfrog to system default install location
+     command: mv jfrog /usr/local/bin/
+   - name: giving permission to jfrog folder
+     command: chmod a+x /usr/local/bin/jfrog
+   - command: jfrog -v
+     name: ls
+     register: jfrog_version
